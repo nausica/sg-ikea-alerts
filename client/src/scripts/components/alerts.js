@@ -25,8 +25,15 @@ var Alerts = React.createClass({
 
   componentDidMount: function() {
     actions.listenToAlerts(this.props.profile.email);
+    //this.listenTo(AlertsStore, this.toggleStatus);
   },
-
+/*
+  toggleStatus: function() {
+    this.setState({
+        alert: AlertsStore.getAlert(parseInt(this.getParams().id))
+    });
+  },
+*/
   onAlertsUpdate: function(alertsData) {
     this.setState({
       loading: false,
@@ -39,7 +46,7 @@ var Alerts = React.createClass({
       <h3>My alerts</h3>
     );
 
-    console.log('render');
+    console.log('render Alerts:');
     console.log(this.state.alerts);
 
     var rows = this.state.alerts.map(function(alert, i) {
@@ -51,7 +58,6 @@ var Alerts = React.createClass({
         <td>
           <Toggle
           defaultChecked={alert.active}
-          aria-label="No label tag"
           onChange={actions.toggleStatus.bind(this, alert)}/>
         </td>
         </tr>

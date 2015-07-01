@@ -10,16 +10,18 @@ var actions = Reflux.createActions({
   'deleteAlert' : {}
 });
 
-actions.toggleStatus.preEmit = function(alert) {
-  request.put('http://localhost:3000/'+alert._id, alert, function () {console.log("done")});
 
+actions.toggleStatus.preEmit = function(alert) {
+  alert.active = !alert.active;
+  request.put('/api/'+alert._id, alert, function () {console.log("done")});
 }
+
 actions.addAlert.preEmit = function (alert) {
-  request.post('http://localhost:3000', alert, function () {console.log("done")});
+  request.post('/api/', alert, function () {console.log("done")});
 };
 actions.deleteAlert.preEmit = function(alert) {
   request
-    .del('http://localhost:3000/'+alert._id)
+    .del('/api/'+alert._id)
     .end(function(err, res){
 
   });

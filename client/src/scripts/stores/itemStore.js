@@ -10,7 +10,7 @@ var itemStore  = Reflux.createStore({
 
   init: function() {
     _item = {
-        url: '../images/ikea_sample.png',
+        url: '/static/images/ikea_sample.png',
         name: 'Quilt cover and 2 pillowcases, black/white',
         disabled: true
       };
@@ -27,7 +27,7 @@ var itemStore  = Reflux.createStore({
   retrieveItem: function(param) {
     var self = this;
     request
-    .get('http://localhost:3000/item/'+param)
+    .get('http://localhost:3000/api/item/'+param)
     .set({ Accept: 'application/json' })
     .end(function(response) {
       _item = response.body;

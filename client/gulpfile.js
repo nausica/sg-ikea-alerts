@@ -115,7 +115,7 @@ gulp.task('default', ['clean', 'html', 'styles', 'images', 'scripts']);
 
 
 // Watch
-gulp.task('watch', ['html', 'styles', 'images', 'scripts', 'serve'], function() {
+gulp.task('watch', ['html', 'styles', 'images', 'scripts'], function() {
   gulp.watch('src/*.html', ['html']);
   gulp.watch('src/styles/**/*.less', ['styles']);
   gulp.watch('src/images/**/*', ['images']);

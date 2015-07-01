@@ -28,7 +28,7 @@ var alertsStore  = Reflux.createStore({
   listenToAlerts: function(param) {
     var self = this;
     request
-    .get('http://localhost:3000/?email='+param)
+    .get('/api/?email='+param)
     .set({ Accept: 'application/json' })
     .end(function(response) {
       _alerts = response.body;
@@ -49,6 +49,7 @@ var alertsStore  = Reflux.createStore({
 
   // callback for toggle action
   toggle: function(alert) {
+    console.log('toggle');
     var alert = _.where(_alerts, { '_id': alert._id })[0];
     // toggle the alert status in the object
     if (alert.active) {
@@ -56,8 +57,8 @@ var alertsStore  = Reflux.createStore({
     } else {
         alert.active = true;
     }
-    // pass the data on to any listeners -- see toggleStatus in view.js)
-    this.trigger();
+    // pass the data on to any listeners
+    this.trigger(_alerts);
   }
 
 });
