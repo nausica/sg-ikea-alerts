@@ -34,7 +34,8 @@ app.use(cookieParser());
 //app.use(express.static(path.join(__dirname, 'public')));
 app.use(config.server.staticUrl, express.static(config.server.distFolder));
 app.use(config.server.staticUrl, function(req, res, next) {
-  res.send(404); // If we get here then the request for a static file is invalid
+  res.status(404).end();
+  // If we get here then the request for a static file is invalid
 });
 
 app.use('/', routes);

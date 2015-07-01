@@ -17,7 +17,7 @@ mongod --fork --dbpath ./data --logpath ./logs/mongodb.log --logappend
 ```
 cd server
 npm install
-npm start
+npm start (forever start server.js)
 
 cd client
 gulp watch

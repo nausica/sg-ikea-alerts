@@ -6,4 +6,4 @@ LOCAL
 ===================================
 STAGING
 ===================================
-@daily /home/ubuntu/journey-labs/react-alerts-ikea-api/scripts/alert-checker.sh local
+@daily /home/ubuntu/journey-labs/sg-ikea-alerts/server/scripts/alert-checker.sh staging

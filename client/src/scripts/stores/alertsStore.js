@@ -49,7 +49,6 @@ var alertsStore  = Reflux.createStore({
 
   // callback for toggle action
   toggle: function(alert) {
-    console.log('toggle');
     var alert = _.where(_alerts, { '_id': alert._id })[0];
     // toggle the alert status in the object
     if (alert.active) {
