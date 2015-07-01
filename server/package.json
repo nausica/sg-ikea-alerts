@@ -1,5 +1,5 @@
 {
-  "name": "sg-ikea-alerts",
+  "name": "sg-ikea-alerts-server",
   "version": "0.0.1",
   "private": true,
   "scripts": {
