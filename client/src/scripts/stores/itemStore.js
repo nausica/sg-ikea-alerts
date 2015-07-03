@@ -27,7 +27,7 @@ var itemStore  = Reflux.createStore({
   retrieveItem: function(param) {
     var self = this;
     request
-    .get('http://localhost:3000/api/item/'+param)
+    .get('/api/item/'+param)
     .set({ Accept: 'application/json' })
     .end(function(response) {
       _item = response.body;
