@@ -1,7 +1,7 @@
 ===================================
 LOCAL
 ===================================
-@daily  /Users/soniafabre/Projects/workspace/git/react-alerts-ikea-api/scripts/alert-checker.sh local
+@daily  /Users/soniafabre/Projects/workspace/git/sg-ikea-alerts/server/scripts/alert-checker.sh local
 
 ===================================
 STAGING

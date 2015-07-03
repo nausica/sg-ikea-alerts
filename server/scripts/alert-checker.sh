@@ -2,8 +2,8 @@
 
 EXPECTED_ARGS=1
 
-LOCAL_PATH=/Users/soniafabre/Projects/workspace/git/react-alerts-ikea-api/scripts
-STAGING_PATH=/home/ubuntu/journey-labs/react-alerts-ikea-api/scripts
+LOCAL_PATH=/Users/soniafabre/Projects/workspace/git/sg-ikea-alerts/server/scripts
+STAGING_PATH=/home/ubuntu/journey-labs/sg-ikea-alerts/server/scripts
 
 if [ $# -ne "$EXPECTED_ARGS" ]
   then

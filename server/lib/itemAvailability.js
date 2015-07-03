@@ -19,6 +19,8 @@ var ItemAvailability = (function() {
       var deferred = Q.defer();
       var url = 'http://www.ikea.com/sg/en/iows/catalog/availability/' + code;
 
+      console.log(url);
+
       request
         .get(url)
         .end(function(err, response) {
