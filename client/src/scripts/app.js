@@ -44,23 +44,34 @@ var App = React.createClass({
     return idToken;
   },
 
+  isTokenExpired: function() {
+    // Detect if JWT is expired
+    // is_expired = parse_json(UrlBase64Decode(token.split('.')[1])).exp < current_date_unix_format
+    var token = this.state.idToken;
+    var exp = JSON.parse(window.atob(token.split('.')[1])).exp;
+    return  exp < Math.floor(Date.now() / 1000);
+  },
+
   showLock: function() {
     this.lock.show();
   },
 
   render: function() {
-    //localStorage.removeItem('userToken');
+    console.log(this.state.idToken)
     if (this.state.idToken) {
-      return (
-        <LoggedIn lock={this.lock} idToken={this.state.idToken} />
-        );
-    } else {
-      return (
-        <div className="login-box auth0-box before">
-          <a onClick={this.showLock} className="btn btn-primary btn-lg btn-login btn-block">Sign In</a>
-        </div>
-      )
+      if (this.isTokenExpired()) {
+        localStorage.removeItem('userToken');
+      } else {
+        return (
+          <LoggedIn lock={this.lock} idToken={this.state.idToken} />
+          );
+      }
     }
+    return (
+      <div className="login-box auth0-box before">
+        <a onClick={this.showLock} className="btn btn-primary btn-lg btn-login btn-block">Sign In</a>
+      </div>
+    )
   }
 });
 
