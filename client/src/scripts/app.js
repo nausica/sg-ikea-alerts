@@ -57,7 +57,6 @@ var App = React.createClass({
   },
 
   render: function() {
-    console.log(this.state.idToken)
     if (this.state.idToken) {
       if (this.isTokenExpired()) {
         localStorage.removeItem('userToken');

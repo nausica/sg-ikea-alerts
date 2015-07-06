@@ -23,7 +23,6 @@ actions.deleteAlert.preEmit = function(alert) {
   request
     .del('/api/'+alert._id)
     .end(function(err, res){
-
   });
 };
 

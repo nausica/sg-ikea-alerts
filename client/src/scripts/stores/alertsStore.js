@@ -14,6 +14,8 @@ var alertsStore  = Reflux.createStore({
     // register addAlert action & bind to addAlert function
     this.listenTo(actions.addAlert, this.addAlert);
     // register toggleStatus action & bind to toggle function
+    this.listenTo(actions.deleteAlert, this.deleteAlert);
+    // register deletAlert  action & bind to toggle function
     this.listenTo(actions.toggleStatus, this.toggle);
     // register listenToAlerts function
     this.listenTo(actions.listenToAlerts, this.listenToAlerts);
@@ -39,6 +41,16 @@ var alertsStore  = Reflux.createStore({
   // returns a alert by id
   getAlert: function(alertId) {
     return _.where(_alerts, { '_id': alertId })[0];
+  },
+
+  // returns a alert by id
+  deleteAlert: function(alert) {
+    console.log(alert)
+    console.log(_alerts)
+    _.remove(_alerts, function(a) {
+      return a._id === alert._id;
+    });
+    this.trigger(_alerts);
   },
 
   // pushes the newly created alert to the private array of alerts

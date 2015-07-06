@@ -7,6 +7,8 @@ var actions = require('../actions/actions');
 var ItemStore = require('../stores/itemStore');
 var Button = require('react-bootstrap').Button;
 var Input = require('react-bootstrap').Input;
+var Row = require('react-bootstrap').Row;
+var Col = require('react-bootstrap').Col;
 
 var SelectedItem = React.createClass({
 
@@ -17,13 +19,16 @@ var SelectedItem = React.createClass({
   render: function() {
     return (
       <div className="selected-div center-block">
-        <div className="display-div" title={this.props.item.name}>
-            <img src={this.props.item.url} border="0" alt={this.props.item.name} title={this.props.item.name} width="400px" height="400px" class="zoomMousePointer"/>
-        </div>
-        <div className="pull-right">
-            <Button onClick={this.handleClick} disabled={this.props.item.disabled}>Add Alert</Button>
-        </div>
-        <div className="clearfix"/>
+        <Row>
+          <Col xs={9}>
+            <div className="display-div" title={this.props.item.name}>
+                <img src={this.props.item.url} border="0" alt={this.props.item.name} title={this.props.item.name} width="400px" height="300px" class="zoomMousePointer"/>
+            </div>
+          </Col>
+          <Col xs={3}>
+              <Button onClick={this.handleClick} disabled={this.props.item.disabled}>Add Alert</Button>
+          </Col>
+        </Row>
       </div>
     );
   }
@@ -80,7 +85,9 @@ var Search = React.createClass({
         <div>
             <div className="search-box">
                 <div className="query-div center-block">
-                    <Input
+                  <Row>
+                    <Col xs={9}>
+                      <Input
                         type='text'
                         value={this.props.query}
                         placeholder='Create an alert for...'
@@ -90,8 +97,11 @@ var Search = React.createClass({
                         ref='searchInput'
                         groupClassName='group-class'
                         labelClassName='label-class' />
-                    <Button onClick={this.handleChange}>Search</Button>
-
+                    </Col>
+                    <Col xs={3}>
+                      <Button onClick={this.handleChange}>Search</Button>
+                    </Col>
+                  </Row>
                 </div>
             </div>
         <SelectedItem item={this.state.item} addAlert={this.addAlert}/>

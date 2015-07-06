@@ -65,7 +65,7 @@ var ItemAvailability = (function() {
       transporter.sendMail({
         from: 'Ikea Alerts <noreply@ikeaAlerts.com>',
         to: email,
-        subject: 'hello',
+        subject: 'Ikea Alert - ' + alert.name,
         text: 'ddd',
         html: template({
           header: 'Availability '+ alert.name,

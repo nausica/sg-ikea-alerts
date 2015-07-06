@@ -88,9 +88,16 @@ router.get('/api/item/:code', function(req, res) {
       } else {
         var $ = window.jQuery;
         var result = {};
-        result.name = $('title').text();
-        result.url = 'http://www.ikea.com' + $('#productImg').attr('src');
-        res.json(result);
+        var item_not_found = $('#errorPage').length;
+
+        if (item_not_found) {
+          res.status(404).json({'itemcode': req.params.code});
+        } else {
+          result.name = $('title').text();
+          result.url = 'http://www.ikea.com' + $('#productImg').attr('src');
+          res.json(result);
+        }
+
       }
     }
   );

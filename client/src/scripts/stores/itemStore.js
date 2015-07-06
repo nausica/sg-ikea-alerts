@@ -25,13 +25,21 @@ var itemStore  = Reflux.createStore({
 
   //
   retrieveItem: function(param) {
+
     var self = this;
     request
     .get('/api/item/'+param)
     .set({ Accept: 'application/json' })
     .end(function(response) {
-      _item = response.body;
-      _item.disabled = false;
+      if (response.ok) {
+        _item = response.body;
+        _item.disabled = false;
+      } else {
+        _item.name = 'Item not found';
+        _item.url = '';
+        _item.disabled = true;
+      }
+
       self.trigger(_item);
     })
   }

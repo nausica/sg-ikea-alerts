@@ -7,6 +7,9 @@ var actions     = require('../actions/actions');
 
 var Panel = require('react-bootstrap').Panel;
 var Table = require('react-bootstrap').Table;
+var Glyphicon = require('react-bootstrap').Glyphicon;
+var Button = require('react-bootstrap').Button;
+
 var Toggle = require('react-toggle');
 
 var Alerts = React.createClass({
@@ -25,15 +28,9 @@ var Alerts = React.createClass({
 
   componentDidMount: function() {
     actions.listenToAlerts(this.props.profile.email);
-    //this.listenTo(AlertsStore, this.toggleStatus);
   },
-/*
-  toggleStatus: function() {
-    this.setState({
-        alert: AlertsStore.getAlert(parseInt(this.getParams().id))
-    });
-  },
-*/
+
+
   onAlertsUpdate: function(alertsData) {
     this.setState({
       loading: false,
@@ -43,7 +40,7 @@ var Alerts = React.createClass({
 
   render: function() {
     const title = (
-      <h3>My alerts</h3>
+      <h3>My alerts ({this.state.alerts.length})</h3>
     );
 
 
@@ -55,6 +52,12 @@ var Alerts = React.createClass({
           <Toggle
           defaultChecked={alert.active}
           onChange={actions.toggleStatus.bind(this, alert)}/>
+        </td>
+        <td>
+          <Button
+          onClick={actions.deleteAlert.bind(this, alert)}>
+            <Glyphicon glyph='trash' />
+          </Button>
         </td>
         </tr>
       )
@@ -70,6 +73,7 @@ var Alerts = React.createClass({
                   <tr>
                     <th>Item</th>
                     <th>Active?</th>
+                    <th>&nbsp;</th>
                   </tr>
                 </thead>
                 <tbody>
