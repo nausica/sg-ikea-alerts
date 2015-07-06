@@ -1,9 +1,9 @@
 ===================================
 LOCAL
 ===================================
-@daily  /Users/soniafabre/Projects/workspace/git/sg-ikea-alerts/server/scripts/alert-checker.sh local
+0 5 * * 1  /Users/soniafabre/Projects/workspace/git/sg-ikea-alerts/server/scripts/alert-checker.sh local
 
 ===================================
 STAGING
 ===================================
-@daily /home/ubuntu/journey-labs/sg-ikea-alerts/server/scripts/alert-checker.sh staging
+0 5 * * 1 /home/ubuntu/journey-labs/sg-ikea-alerts/server/scripts/alert-checker.sh staging
