@@ -46,15 +46,11 @@ var Alerts = React.createClass({
       <h3>My alerts</h3>
     );
 
-    console.log('render Alerts:');
-    console.log(this.state.alerts);
 
     var rows = this.state.alerts.map(function(alert, i) {
       return (
         <tr key={i}>
-        <td>{alert.name}</td>
-        <td>{alert.code}</td>
-        <td>{alert.email}</td>
+        <td>{alert.name} ({alert.code})</td>
         <td>
           <Toggle
           defaultChecked={alert.active}
@@ -72,9 +68,7 @@ var Alerts = React.createClass({
               <Table responsive striped bordered>
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Code</th>
-                    <th>Email</th>
+                    <th>Item</th>
                     <th>Active?</th>
                   </tr>
                 </thead>
