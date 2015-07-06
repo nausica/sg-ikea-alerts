@@ -35,6 +35,13 @@ gulp.task('styles', function(){
     .pipe(gulp.dest('dist/styles'));
 });
 
+// Fonts
+gulp.task('fonts', function() {
+    return gulp.src([
+                    'src/styles/lib/bootstrap/fonts/glyphicons-halflings-regular.*'])
+            .pipe(gulp.dest('dist/fonts/'));
+});
+
 // Scripts
 gulp.task('scripts', function() {
   var bundler;
@@ -111,11 +118,11 @@ gulp.task('clean', function(cb) {
 
 
 // Default task
-gulp.task('default', ['clean', 'html', 'styles', 'images', 'scripts']);
+gulp.task('default', ['clean', 'html', 'styles', 'images', 'scripts', 'fonts']);
 
 
 // Watch
-gulp.task('watch', ['html', 'styles', 'images', 'scripts'], function() {
+gulp.task('watch', ['html', 'styles', 'images', 'scripts', 'fonts'], function() {
   gulp.watch('src/*.html', ['html']);
   gulp.watch('src/styles/**/*.less', ['styles']);
   gulp.watch('src/images/**/*', ['images']);
