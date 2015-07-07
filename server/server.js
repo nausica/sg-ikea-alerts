@@ -7,13 +7,16 @@ var bodyParser = require('body-parser');
 var Promise = require('bluebird');
 var mongoose = Promise.promisifyAll(require('mongoose'));
 var cors = require('cors');
-
+var compression = require('compression');
 var routes = require('./routes/index');
 var config = require('./config.js');
 
 var app = express();
 app.set('port', process.env.PORT || 3000);
 app.use(cors());
+
+// compress responses
+app.use(compression())
 
 /**
  * Connect to MongoDB.
@@ -31,8 +34,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-//app.use(express.static(path.join(__dirname, 'public')));
-app.use(config.server.staticUrl, express.static(config.server.distFolder));
+// Static content
+var oneDay = 86400000;
+app.use(config.server.staticUrl, express.static(config.server.distFolder, { maxAge: oneDay }));
 app.use(config.server.staticUrl, function(req, res, next) {
   res.status(404).end();
   // If we get here then the request for a static file is invalid
