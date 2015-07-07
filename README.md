@@ -20,7 +20,7 @@ npm install
 npm start (forever start server.js)
 
 cd client
-gulp watch
+gulp watch (gulp --type production)
 ```
 
 

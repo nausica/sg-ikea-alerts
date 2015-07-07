@@ -2,7 +2,8 @@
 
 var gulp       = require('gulp');
 var less       = require('gulp-less');
-var minifyCSS  = require('gulp-minify-css');
+var minifycss  = require('gulp-minify-css');
+var size       = require('gulp-size');
 var del        = require('del');
 var path       = require('path');
 var browserify = require('browserify');
@@ -11,7 +12,7 @@ var watchify   = require('watchify');
 var source     = require('vinyl-source-stream');
 var $          = require('gulp-load-plugins')();
 
-var prod = $.util.env.prod;
+var is_prod = $.util.env.type === 'production';
 
 // gulp-plumber for error handling
 function onError() {
@@ -31,14 +32,20 @@ function onError() {
 gulp.task('styles', function(){
   return gulp.src('src/styles/styles.less')
     .pipe(less())
-    .pipe(minifyCSS())
+    .pipe(minifycss())
     .pipe(gulp.dest('dist/styles'));
 });
-
+gulp.task('optimize:styles', function() {
+  return gulp.src('src/styles/styles.less')
+    .pipe(less())
+    .pipe(minifycss())
+    .pipe(gulp.dest('dist/styles'))
+    .pipe(size());
+});
 // Fonts
-gulp.task('fonts', function() {
+gulp.task('copy:fonts', function() {
     return gulp.src([
-                    'src/styles/lib/bootstrap/fonts/glyphicons-halflings-regular.*'])
+            'src/styles/lib/bootstrap/fonts/glyphicons-halflings-regular.*'])
             .pipe(gulp.dest('dist/fonts/'));
 });
 
@@ -65,7 +72,7 @@ gulp.task('scripts', function() {
     return bundler.bundle()
       .on('error', onError)
       .pipe(source('app.js'))
-      .pipe(prod ? $.streamify($.uglify()) : $.util.noop())
+      .pipe(is_prod ? $.streamify($.uglify()) : $.util.noop())
       .pipe(gulp.dest('dist/scripts'))
       .pipe($.notify(function() {
         console.log('Bundling Complete - ' + (Date.now() - start) + 'ms');
@@ -99,7 +106,6 @@ gulp.task('images', function() {
     .pipe($.size());
 });
 
-
 // Webserver
 gulp.task('serve', function() {
   gulp.src('dist')
@@ -118,8 +124,7 @@ gulp.task('clean', function(cb) {
 
 
 // Default task
-gulp.task('default', ['clean', 'html', 'styles', 'images', 'scripts', 'fonts']);
-
+gulp.task('default', ['clean', 'html', 'optimize:styles', 'images', 'scripts', 'copy:fonts']);
 
 // Watch
 gulp.task('watch', ['html', 'styles', 'images', 'scripts', 'fonts'], function() {
