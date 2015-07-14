@@ -1,7 +1,6 @@
 'use strict';
 /** @jsx React.DOM */
 var React = require('react');
-var $     = require('jquery');
 
 // view components
 var LoggedIn = require('./loggedIn');
@@ -9,7 +8,7 @@ var LoggedIn = require('./loggedIn');
 var App = React.createClass({
 
   componentWillMount: function() {
-    this.setupAjax();
+    //this.setupAjax();
     this.createLock();
     this.setState({idToken: this.getIdToken()})
   },

@@ -54,7 +54,7 @@ gulp.task('scripts', function() {
   var bundler;
   bundler = browserify({
     basedir: __dirname,
-    noparse: ['react/addons', 'reflux', 'react-router'],
+    noparse: ['react/addons', 'reflux'],
     entries: ['./src/scripts/app.js'],
     transform: [reactify],
     extensions: ['.js'],
@@ -127,7 +127,7 @@ gulp.task('clean', function(cb) {
 gulp.task('default', ['clean', 'html', 'optimize:styles', 'images', 'scripts', 'copy:fonts']);
 
 // Watch
-gulp.task('watch', ['html', 'styles', 'images', 'scripts', 'fonts'], function() {
+gulp.task('watch', ['html', 'styles', 'images', 'scripts', 'copy:fonts'], function() {
   gulp.watch('src/*.html', ['html']);
   gulp.watch('src/styles/**/*.less', ['styles']);
   gulp.watch('src/images/**/*', ['images']);
