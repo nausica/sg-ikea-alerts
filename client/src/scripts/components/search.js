@@ -9,6 +9,7 @@ var Button = require('react-bootstrap').Button;
 var Input = require('react-bootstrap').Input;
 var Row = require('react-bootstrap').Row;
 var Col = require('react-bootstrap').Col;
+var Loader = require('react-loader');
 
 var SelectedItem = React.createClass({
 
@@ -45,7 +46,8 @@ var Search = React.createClass({
 
     return {
       query: '',
-      item: itemData
+      item: itemData,
+      item_loaded: true
     }
   },
 
@@ -58,14 +60,16 @@ var Search = React.createClass({
   handleChange: function() {
     var query =  this.refs.searchInput.getValue();
     this.setState({
-      query: query
+      query: query,
+      item_loaded: false
     });
     actions.retrieveItem(query);
   },
 
   onItemUpdate: function(itemData) {
     var newState = React.addons.update(this.state, {
-      item: {$set: itemData}
+      item: {$set: itemData},
+      item_loaded: {$set: true}
     });
     this.setState(newState);
   },
@@ -104,7 +108,9 @@ var Search = React.createClass({
                   </Row>
                 </div>
             </div>
-        <SelectedItem item={this.state.item} addAlert={this.addAlert}/>
+        <Loader loaded={this.state.item_loaded} lines={13} length={28} width={14} radius={42} opacity={0.25}>
+          <SelectedItem item={this.state.item} addAlert={this.addAlert}/>
+        </Loader>
       </div>
     );
   }
