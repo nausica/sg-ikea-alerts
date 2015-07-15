@@ -66,8 +66,17 @@ var App = React.createClass({
       }
     }
     return (
-      <div className="login-box auth0-box before">
-        <a onClick={this.showLock} className="btn btn-primary btn-lg btn-login btn-block">Sign In</a>
+      <div>
+        <div class="page-header">
+          <h1>Welcome to Ikea Alerts</h1>
+        </div>
+        <p class="lead">Monitor Ikea items in Singapore and get notified with their availability.</p>
+        <p class="lead">No registration needed. Sign in using your Google account.</p>
+        <p>
+        <div className="login-box auth0-box before">
+          <a onClick={this.showLock} className="btn btn-primary btn-lg btn-login btn-block">Sign In</a>
+        </div>
+        </p>
       </div>
     )
   }

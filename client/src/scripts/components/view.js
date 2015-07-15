@@ -1,6 +1,5 @@
 /** @jsx React.DOM */
 var React = require('react');
-var Router = require('react-router');
 var Reflux = require('reflux');
 var AlertsStore = require('../stores/alertsStore');
 var actions = require('../actions/actions');
@@ -8,8 +7,6 @@ var actions = require('../actions/actions');
 var Display = React.createClass({
 
   mixins: [
-    Router.Navigation,
-    Router.State,
     Reflux.ListenerMixin
   ],
 

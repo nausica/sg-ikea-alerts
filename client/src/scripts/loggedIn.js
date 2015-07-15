@@ -18,7 +18,6 @@ var LoggedIn = React.createClass({
         alert("Error loading the Profile");
       }
       this.setState({profile: profile});
-            console.log(profile)
 
     }.bind(this));
   },
