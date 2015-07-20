@@ -16,7 +16,7 @@ case "$1" in
         mongo localhost:27017/alerts-ikea --quiet $LOCAL_PATH/db/find_active_alerts.js | awk -F\t '{system("curl -S -s \x27http://localhost:3000/api/manage/"$1"?email="$2"\x27")}'
         ;;
         staging)
-        mongo localhost:27017/alerts-ikea --quiet $STAGING_PATH/db/find_active_alerts.js | awk '{system("curl -S -s \x27http://ec2-52-24-111-205.us-west-2.compute.amazonaws.com:3000/api/manage/"$1"?email="$2"\x27")}'
+        mongo localhost:27017/alerts-ikea --quiet $STAGING_PATH/db/find_active_alerts.js | awk '{system("curl -S -s \x27http://staging.ikeaalerts.com/api/manage/"$1"?email="$2"\x27")}'
         ;;
 *)
     echo "Usage: ./generate_reports.sh {local|staging}"
