@@ -70,7 +70,7 @@ var ItemAvailability = (function() {
         html: template({
           header: 'Availability '+ alert.name,
           message: compiled({'shops': availability.shops}),
-          footer: '<a href="http://ec2-52-24-111-205.us-west-2.compute.amazonaws.com:3000/">Edit alert</a> | <a href="http://www.ikea.com/sg/en/catalog/products/'+availability.itemCode+'">See the product in Ikea</a>'
+          footer: '<a href="http://staging.ikeaalerts.com/">Edit alert</a> | <a href="http://www.ikea.com/sg/en/catalog/products/'+availability.itemCode+'">See the product in Ikea</a>'
         })
       }, function(err, info) {
         deferred.resolve(info);
