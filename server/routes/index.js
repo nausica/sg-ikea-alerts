@@ -95,6 +95,10 @@ router.get('/api/item/:code', function(req, res) {
         } else {
           result.name = $('title').text();
           result.url = 'http://www.ikea.com' + $('#productImg').attr('src');
+          result.price = $('#price1').text();
+          result.itemNumber = $('#itemNumber').text();
+          result.desc = $('#salesArg').find('cbs cb t').text();
+          console.log($('#salesArg')); //*[@id="salesArg"]/cbs/cb/t
           res.json(result);
         }
 
