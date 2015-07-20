@@ -25,10 +25,12 @@ var LoggedIn = React.createClass({
   render: function() {
     if (this.state.profile) {
       return (
-        <div>
-            <h2>Welcome to Ikea Alerts, {this.state.profile.nickname}</h2>
+        <div className="cover-container">
+          <div className="inner cover frame">
+            <h2 className="cover-heading">Welcome to Ikea Alerts, {this.state.profile.nickname}</h2>
             <Search profile={this.state.profile}/>
             <Alerts profile={this.state.profile}/>
+          </div>
         </div>
       );
     } else {

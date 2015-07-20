@@ -7,8 +7,7 @@ var actions = require('../actions/actions');
 var ItemStore = require('../stores/itemStore');
 var Button = require('react-bootstrap').Button;
 var Input = require('react-bootstrap').Input;
-var Row = require('react-bootstrap').Row;
-var Col = require('react-bootstrap').Col;
+
 var Loader = require('react-loader');
 
 var SelectedItem = React.createClass({
@@ -20,16 +19,19 @@ var SelectedItem = React.createClass({
   render: function() {
     return (
       <div className="selected-div center-block">
-        <Row>
-          <Col xs={9}>
-            <div className="display-div" title={this.props.item.name}>
-                <img src={this.props.item.url} border="0" alt={this.props.item.name} title={this.props.item.name} width="400px" height="300px" class="zoomMousePointer"/>
+            <div className="content-wrapper">
+              <div className="text-wrapper">
+                <p>{this.props.item.name}</p>
+                <p>{this.props.item.itemNumber}</p>
+                <p>{this.props.item.price}</p>
+              </div>
+              <span className="alert-button">
+                <Button bsStyle='primary' onClick={this.handleClick} disabled={this.props.item.disabled}>Add Alert</Button>
+              </span>
             </div>
-          </Col>
-          <Col xs={3}>
-              <Button onClick={this.handleClick} disabled={this.props.item.disabled}>Add Alert</Button>
-          </Col>
-        </Row>
+            <div className="thumb-wrapper">
+              <img src={this.props.item.url} border="0" alt={this.props.item.name} title={this.props.item.name} height="100" class="zoomMousePointer"/>
+            </div>
       </div>
     );
   }
@@ -85,32 +87,26 @@ var Search = React.createClass({
   },
 
   render: function() {
+    const searchButton = <Button bsStyle='primary' onClick={this.handleChange}>Search</Button>;
     return (
         <div>
             <div className="search-box">
                 <div className="query-div center-block">
-                  <Row>
-                    <Col xs={9}>
                       <Input
                         type='text'
                         value={this.props.query}
                         placeholder='Create an alert for...'
                         help='e.g. 00173901'
-                        bsStyle={this.validationState()}
                         hasFeedback
                         ref='searchInput'
                         groupClassName='group-class'
-                        labelClassName='label-class' />
-                    </Col>
-                    <Col xs={3}>
-                      <Button onClick={this.handleChange}>Search</Button>
-                    </Col>
-                  </Row>
+                        labelClassName='label-class'
+                        buttonAfter={searchButton}/>
                 </div>
+                <Loader loaded={this.state.item_loaded} lines={13} length={28} width={14} radius={42} opacity={0.25}>
+                  <SelectedItem item={this.state.item} addAlert={this.addAlert}/>
+                </Loader>
             </div>
-        <Loader loaded={this.state.item_loaded} lines={13} length={28} width={14} radius={42} opacity={0.25}>
-          <SelectedItem item={this.state.item} addAlert={this.addAlert}/>
-        </Loader>
       </div>
     );
   }

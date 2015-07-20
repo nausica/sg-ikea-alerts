@@ -66,18 +66,19 @@ var App = React.createClass({
       }
     }
     return (
-      <div>
-        <div class="page-header">
-          <h1>Welcome to Ikea Alerts</h1>
+        <div className="cover-container">
+          <div className="inner cover frame">
+            <h1 className="cover-heading">Ikea Alerts in Singapore</h1>
+            <p className="lead">Monitor Ikea items in Singapore and get notified with their availability. No registration needed. Sign in using your Google account.</p>
+            <p className="lead">
+              <div className="login-box auth0-box before">
+                <a onClick={this.showLock} className="btn btn-primary btn-lg btn-login btn-block">Login with Google+</a>
+              </div>
+            </p>
+          </div>
         </div>
-        <p class="lead">Monitor Ikea items in Singapore and get notified with their availability.</p>
-        <p class="lead">No registration needed. Sign in using your Google account.</p>
-        <p>
-        <div className="login-box auth0-box before">
-          <a onClick={this.showLock} className="btn btn-primary btn-lg btn-login btn-block">Sign In</a>
-        </div>
-        </p>
-      </div>
+
+
     )
   }
 });

@@ -1,7 +1,9 @@
 .search-box {
-    background-color: #fcd500;
+    //background-color: #fcd500;
+    background-color: whitesmoke;
     box-shadow: 0 5px 8px rgba(0,0,0,.28);
-    padding: 11px 0px;
+    border-radius: 4px;
+    padding: 15px;
     .query-div {
         max-width: 650px;
     }
@@ -10,6 +12,10 @@
 .selected-div {
     margin-top: 16px;
     max-width: 650px;
+    position: relative;
+    background-color: white;
+    min-height: 100px;
+    border-top: 1px solid #e5e5e5;
 }
 
 .my-alerts-div {
@@ -66,8 +72,46 @@
   box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, .5);
   -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, .5);
 
-  background-color: whitesmoke;
-  opacity: 0.8;
+  //background-color: whitesmoke;
+  //opacity: 0.8;
   color: #555;
+  background:rgba(255, 255, 255, 0.7);
   text-shadow: none;
+  text-align: left;
+}
+.site-wrapper-inner {
+  background-image: url('../images/cover.jpg');
+  background-repeat: no-repeat;
+}
+.content-wrapper {
+  margin-left: 120px;
+  text-align: left;
+}
+.text-wrapper {
+  max-width: 75%;
+  float: left;
+  margin: 15px 0;
+}
+.thumb-wrapper {
+  position: absolute;
+  top: 0;
+  margin: 0 5px;
+  width: 120px;
+  height: 100px;
+  overflow: hidden;
+}
+.alert-button {
+  float: right;
+  margin: 25px 0;
+}
+
+.panel {
+  box-shadow: 0 5px 8px rgba(0,0,0,.28);
+}
+a.delete-alert {
+  cursor: pointer;
+  color: #555;
+}
+a:focus, a:hover {
+  color: #ac6819;
 }

@@ -54,10 +54,10 @@ var Alerts = React.createClass({
           onChange={actions.toggleStatus.bind(this, alert)}/>
         </td>
         <td>
-          <Button
+          <a className="delete-alert"
           onClick={actions.deleteAlert.bind(this, alert)}>
             <Glyphicon glyph='trash' />
-          </Button>
+          </a>
         </td>
         </tr>
       )
